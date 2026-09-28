@@ -228,6 +228,7 @@
     document.body.classList.remove('modal-open');
     if (state.releaseOrderTrap) state.releaseOrderTrap();
     state.releaseOrderTrap = null;
+    els.cartButton.focus();
   }
 
   function attachEvents() {

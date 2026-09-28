@@ -44,6 +44,22 @@ body {
   overflow-x: clip;
 }
 
+html[lang="am"] body,
+html[lang="am"] input,
+html[lang="am"] select,
+html[lang="am"] textarea,
+html[lang="am"] button {
+  font-family: "Noto Sans Ethiopic", Inter, Manrope, "Segoe UI", Arial, sans-serif;
+}
+
+html[lang="am"] .display-title,
+html[lang="am"] h1,
+html[lang="am"] h2,
+html[lang="am"] h3 {
+  font-family: "Noto Sans Ethiopic", Georgia, serif;
+  line-height: 1.12;
+}
+
 body.menu-open,
 body.panel-open,
 body.modal-open {

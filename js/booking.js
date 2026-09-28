@@ -164,6 +164,7 @@
       taxes: document.querySelector('[data-summary-taxes]'),
       total: document.querySelector('[data-summary-total]')
     };
+    let lastConfirmation = null;
 
     renderRoomOptionList(fields.room, false);
     const params = new URLSearchParams(window.location.search);
@@ -247,14 +248,22 @@
         }
       };
       const saved = await BookingService.submit(payload);
+      lastConfirmation = { saved, room, payload, nights };
       form.hidden = true;
       confirmation.hidden = false;
+      renderConfirmation(lastConfirmation);
+      app.showToast(app.t('toast_booking_saved'));
+    }
+
+    function renderConfirmation(data) {
+      if (!data) return;
+      const { saved, room, payload, nights } = data;
       confirmation.querySelector('[data-booking-confirmation-title]').textContent = app.t('booking_request_saved_title');
       confirmation.querySelector('[data-booking-confirmation-text]').textContent = app.t('booking_request_saved_text');
       confirmation.querySelector('[data-booking-reference]').textContent = saved.id.toUpperCase();
       const summaryRoot = confirmation.querySelector('[data-booking-summary]');
-      const summary = document.createElement('div');
-      summary.className = 'order-summary';
+      const summaryBlock = document.createElement('div');
+      summaryBlock.className = 'order-summary';
       [
         [app.t('booking_summary_room'), app.t(room.nameKey), 'span'],
         [app.t('booking_summary_nights'), String(nights), 'span'],
@@ -267,10 +276,9 @@
         const valueNode = document.createElement(valueTag);
         valueNode.textContent = value;
         row.append(labelNode, valueNode);
-        summary.appendChild(row);
+        summaryBlock.appendChild(row);
       });
-      summaryRoot.replaceChildren(summary);
-      app.showToast(app.t('toast_booking_saved'));
+      summaryRoot.replaceChildren(summaryBlock);
     }
 
     Object.values(fields).forEach((field) => field.addEventListener('change', updateSummary));
@@ -279,6 +287,7 @@
     document.addEventListener(app.languageEventName, () => {
       renderRoomOptionList(fields.room, false);
       updateSummary();
+      if (!confirmation.hidden) renderConfirmation(lastConfirmation);
     });
     updateSummary();
   }
