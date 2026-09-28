@@ -178,6 +178,7 @@
 
   function openCart() {
     els.cartPanel.classList.add('is-open');
+    els.cartPanel.setAttribute('aria-hidden', 'false');
     document.body.classList.add('panel-open');
     state.releaseTrap = app.trapFocus(els.cartDialog);
     const focusTarget = els.cartDialog.querySelector('button, a');
@@ -186,6 +187,7 @@
 
   function closeCart() {
     els.cartPanel.classList.remove('is-open');
+    els.cartPanel.setAttribute('aria-hidden', 'true');
     document.body.classList.remove('panel-open');
     if (state.releaseTrap) state.releaseTrap();
     state.releaseTrap = null;
@@ -210,6 +212,7 @@
     els.orderReference.textContent = reference;
     closeCart();
     els.orderModal.classList.add('is-open');
+    els.orderModal.setAttribute('aria-hidden', 'false');
     document.body.classList.add('modal-open');
     state.releaseOrderTrap = app.trapFocus(els.orderModal.querySelector('.modal-dialog'));
     const firstButton = els.orderModal.querySelector('button');
@@ -221,6 +224,7 @@
 
   function closeOrderModal() {
     els.orderModal.classList.remove('is-open');
+    els.orderModal.setAttribute('aria-hidden', 'true');
     document.body.classList.remove('modal-open');
     if (state.releaseOrderTrap) state.releaseOrderTrap();
     state.releaseOrderTrap = null;
@@ -265,7 +269,7 @@
         closeOrderModal();
       }
     });
-    document.addEventListener('languagechange', () => {
+    document.addEventListener(app.languageEventName, () => {
       updateChipStates();
       renderMenu();
       renderCart();

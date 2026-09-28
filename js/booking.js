@@ -99,6 +99,7 @@
 
     const closeModal = () => {
       results.modal.classList.remove('is-open');
+      results.modal.setAttribute('aria-hidden', 'true');
       document.body.classList.remove('modal-open');
       if (releaseTrap) releaseTrap();
       releaseTrap = null;
@@ -114,6 +115,7 @@
       results.modalImage.alt = app.t(room.altKey);
       results.modalImage.dataset.fallbackLabel = app.t(room.nameKey);
       results.modal.classList.add('is-open');
+      results.modal.setAttribute('aria-hidden', 'false');
       document.body.classList.add('modal-open');
       releaseTrap = app.trapFocus(results.modal.querySelector('.modal-dialog'));
       const closeButton = results.modal.querySelector('[data-close-room-modal]');
@@ -132,7 +134,7 @@
     document.addEventListener('keydown', (event) => {
       if (event.key === 'Escape') closeModal();
     });
-    document.addEventListener('languagechange', () => {
+    document.addEventListener(app.languageEventName, () => {
       renderRoomOptionList(form.type, true);
       render();
     });
@@ -274,7 +276,7 @@
     Object.values(fields).forEach((field) => field.addEventListener('change', updateSummary));
     fields.room.addEventListener('change', updateSummary);
     form.addEventListener('submit', handleSubmit);
-    document.addEventListener('languagechange', () => {
+    document.addEventListener(app.languageEventName, () => {
       renderRoomOptionList(fields.room, false);
       updateSummary();
     });

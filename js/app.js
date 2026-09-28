@@ -186,6 +186,7 @@
   const state = { lang: safeStorageGet('hh_lang') || 'en' };
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const toastRegionId = 'toast-region';
+  const languageEventName = 'hh:languagechange';
 
   function safeStorageGet(key) {
     try { return localStorage.getItem(key); } catch (error) { return null; }
@@ -326,7 +327,7 @@
     applyBrand();
     translatePage();
     renderHomeRoomsPreview();
-    document.dispatchEvent(new CustomEvent('languagechange', { detail: { lang: state.lang } }));
+    document.dispatchEvent(new CustomEvent(languageEventName, { detail: { lang: state.lang } }));
     if (announce) showToast(t('toast_language'));
   }
 
@@ -492,7 +493,7 @@
       }
       showToast(t('toast_message_saved'));
     });
-    document.addEventListener('languagechange', () => {
+    document.addEventListener(languageEventName, () => {
       translatePage(form);
       if (success && !success.hidden) {
         success.querySelector('[data-contact-success-title]').textContent = t('contact_success_title');
@@ -515,6 +516,7 @@
     addDaysISO,
     differenceInNights,
     getLanguage: () => state.lang,
+    languageEventName,
     setLanguage,
     safeStorageGet,
     safeStorageSet,
