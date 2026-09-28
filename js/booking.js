@@ -120,7 +120,7 @@
     };
 
     Object.values(form).forEach((field) => field.addEventListener('change', render));
-    roomsPage.querySelector('[type="button"]').addEventListener('click', render);
+    roomsPage.querySelector('[data-room-search]').addEventListener('click', render);
     roomsPage.addEventListener('click', (event) => {
       const view = event.target.closest('[data-view-room]');
       if (view) openModal(view.getAttribute('data-view-room'));
@@ -163,17 +163,16 @@
     };
 
     renderRoomOptionList(fields.room, false);
-    const today = app.todayISO();
-    fields.checkin.min = today;
-    fields.checkin.value ||= today;
-    fields.checkout.min = app.addDaysISO(fields.checkin.value, 1);
-    fields.checkout.value ||= app.addDaysISO(fields.checkin.value, 1);
-
     const params = new URLSearchParams(window.location.search);
     if (params.get('room')) fields.room.value = params.get('room');
     if (params.get('checkin')) fields.checkin.value = params.get('checkin');
     if (params.get('checkout')) fields.checkout.value = params.get('checkout');
     if (params.get('guests')) fields.guests.value = params.get('guests');
+    const today = app.todayISO();
+    fields.checkin.min = today;
+    fields.checkin.value ||= today;
+    fields.checkout.min = app.addDaysISO(fields.checkin.value, 1);
+    fields.checkout.value ||= app.addDaysISO(fields.checkin.value, 1);
 
     function setError(fieldName, key = '') {
       const field = fields[fieldName];
