@@ -1,24 +1,35 @@
-# HABESHA HAVEN — Hotel & Café
+# BEREKET JUICE — Juice & Fruit Salad
 
-A premium Ethiopian hotel and café static website built with HTML5, CSS3, and Vanilla JavaScript only. It opens directly via `file://` and also deploys cleanly on GitHub Pages, Netlify, or Vercel without any build step.
+A warm, fruity static café website for **Bereket Juice & Fruit Salad** in Hawassa, Ethiopia. The site is built with HTML5, CSS3, and Vanilla JavaScript only, so it opens directly via `file://` and deploys cleanly to GitHub Pages without a build step.
 
 ## Features
 
-- Premium multi-page Glassmorphism UI with Ethiopian-inspired visual cues
-- Root-level static pages for GitHub Pages compatibility
-- Shared floating navigation, footer, skip link, active-page highlighting, and mobile menu
-- English / አማርኛ language toggle with persistent localStorage state
-- Shared `BRAND` config and shared room data in `js/app.js` for easy rebranding
-- Rooms search with dynamic price estimate and accessible room-detail modal
-- Café menu filters, debounced search, localStorage cart, and order-request confirmation modal
-- Booking request form with validation, live estimate, URL prefill, and localStorage persistence
-- Contact form with localStorage success state and a CSS/SVG map-style visual section
-- Global image fallback handling, graceful reduced-motion support, and no-JS-safe page content
+- Multi-page static site themed for fresh juice, fruit salad, burgers, and pizza
+- Shared floating navigation, footer, language toggle, and responsive mobile menu
+- Centralized brand data and featured-specials catalog in `js/app.js`
+- Interactive menu filters, search, cart, and order-request confirmation flow in `js/menu.js`
+- Specials and pre-order request flows powered by the reusable data in `js/app.js` and `js/booking.js`
+- English / አማርኛ toggle with persistent localStorage state
+- GitHub Pages-ready root-level static pages with relative asset paths
+
+## Business details
+
+- **Name:** Bereket Juice & Fruit Salad
+- **Amharic:** በረከት ፍሬሽ ጁስ እና ሳላድ
+- **Tagline:** Juice & Fruit Salad
+- **TikTok:** [@bereketjuice](https://www.tiktok.com/@bereketjuice)
+- **Location:** Hawassa, Ethiopia
+- **Phone:** 0916 39 90 15
+- **Highlights:** avocado juice, mango juice, papaya juice, layered spris, fruit salad, burgers, pizza
+- **Promo:** ሀዋሳ በ120 ብር ብቻ
 
 ## File Structure
 
 ```text
 .
+├── .github/
+│   └── workflows/
+│       └── deploy.yml
 ├── .nojekyll
 ├── 404.html
 ├── README.md
@@ -37,82 +48,34 @@ A premium Ethiopian hotel and café static website built with HTML5, CSS3, and V
 └── rooms.html
 ```
 
-## Open Locally
+## Open locally
 
-1. Download or clone the repository.
-2. Open `index.html` directly in your browser.
-3. Because all internal asset paths are relative and scripts use plain `defer` scripts instead of ES modules, the website also works over `file://`.
+1. Clone or download the repository.
+2. Open `index.html` directly in your browser from the repository root.
+3. Because all internal asset paths are relative and the site uses plain `defer` scripts instead of a build pipeline, it also works over `file://`.
 
-## Deploy
+## Deploy to GitHub Pages
 
-### GitHub Pages
+This repository includes `.github/workflows/deploy.yml`, which deploys the static site to GitHub Pages on pushes to the default `main` branch.
 
 1. Push the repository to GitHub.
 2. Go to **Settings → Pages**.
-3. Select **Deploy from a branch**.
-4. Choose **main** and **/(root)**.
-5. Save. The root-level `index.html` and `.nojekyll` file are already set up for this deployment style.
+3. Set **Source** to **GitHub Actions**.
+4. Wait for the **Deploy static content to Pages** workflow to complete after a push to `main`.
+5. Visit the published site at the standard Pages URL pattern `https://<owner>.github.io/<repo>/`.
+   - For this repository (whose GitHub slug is currently `habesha-haven`), the expected URL is **https://alazarsisay145-hash.github.io/habesha-haven/**
 
-### Netlify
+## Rebranding notes
 
-- Drag and drop the project folder into Netlify, or connect the repository.
-- No build command is required.
-- Publish directory: leave blank or use the repository root.
+Two places control most shared content:
 
-### Vercel
+1. **`js/app.js`**
+   - Shared business details, translations, and featured specials
+2. **`js/menu.js`**
+   - Interactive juice, salad, burger, and pizza menu data
 
-- Import the repository as a static project.
-- No framework preset or build command is required.
-- Output directory: repository root.
+## Browser support
 
-## Rebranding
-
-Two places control the brand identity:
-
-1. **`js/app.js` → `BRAND` object**
-   - Update the hotel name, tagline, phone, email, address, and hours in one place.
-2. **`css/style.css` → CSS custom properties in `:root`**
-   - Update the palette, radii, shadows, and spacing system.
-
-## Add or Edit Translations
-
-- Translation strings live in the `translations` dictionary inside `js/app.js`.
-- Static HTML text uses `data-i18n`, `data-i18n-placeholder`, `data-i18n-aria`, or `data-i18n-title` attributes.
-- Dynamic UI in `menu.js` and `booking.js` uses the shared `HHApp.t()` helper and listens for the custom `languagechange` event.
-
-## Edit Rooms and Menu Data
-
-### Rooms
-
-- Shared room data is defined once in `js/app.js` (`ROOMS` array).
-- The homepage preview, rooms page, and booking page all reuse this data.
-
-### Menu
-
-- Café menu data lives in `js/menu.js` (`MENU_ITEMS` array).
-- Update names/descriptions through translation keys and adjust price, categories, and images in the menu item objects.
-
-## Connect a Real Backend Later
-
-`js/booking.js` contains a `BookingService` object with:
-
-- `API_ENDPOINT` placeholder config
-- `submit(data)` returning a Promise
-
-To connect a backend later, replace the current localStorage implementation with `fetch(API_ENDPOINT, ...)`, keep the same Promise contract, and preserve the existing validation plus confirmation UI.
-
-## Download as ZIP
-
-On GitHub, open the **Code** dropdown and choose **Download ZIP**.
-
-## Browser Support
-
-- Modern Chromium, Firefox, Safari, and Edge browsers
+- Modern Chromium, Firefox, Safari, and Edge
 - Graceful fallback if `backdrop-filter` is unavailable
-- Graceful reduced-motion behavior when users prefer less animation
-
-## Credits
-
-- Images use high-quality Unsplash URLs as temporary placeholders.
-- Replace them with local optimized brand photography when you are ready.
-- See `assets/README.txt` for image guidance.
+- Reduced-motion friendly reveal behavior
