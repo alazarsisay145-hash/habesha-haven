@@ -203,7 +203,7 @@
       const taxes = Math.round(subtotal * 0.15);
       const total = subtotal + taxes;
       summary.room.textContent = room ? app.t(room.nameKey) : app.t('placeholder_summary_room');
-      summary.nights.textContent = servings ? String(servings) : '—';
+      summary.nights.textContent = servings ? app.t('booking_summary_servings_lead', { servings, days: leadTime }) : '—';
       summary.rate.textContent = rate ? app.formatCurrency(rate) : '—';
       summary.subtotal.textContent = subtotal ? app.formatCurrency(subtotal) : '—';
       summary.taxes.textContent = taxes ? app.formatCurrency(taxes) : '—';
@@ -268,7 +268,7 @@
       summaryBlock.className = 'order-summary';
       [
         [app.t('booking_summary_room'), app.t(room.nameKey), 'span'],
-        [app.t('booking_summary_nights'), String(payload.estimate.servings), 'span'],
+        [app.t('booking_summary_nights'), app.t('booking_summary_servings_lead', { servings: payload.estimate.servings, days: payload.estimate.leadTime }), 'span'],
         [app.t('booking_summary_total'), app.formatCurrency(payload.estimate.total), 'strong']
       ].forEach(([label, value, valueTag]) => {
         const row = document.createElement('div');

@@ -51,7 +51,7 @@ A warm, fruity static café website for **Bereket Juice & Fruit Salad** in Hawas
 ## Open locally
 
 1. Clone or download the repository.
-2. Open `/home/runner/work/habesha-haven/habesha-haven/index.html` directly in your browser.
+2. Open `index.html` directly in your browser from the repository root.
 3. Because all internal asset paths are relative and the site uses plain `defer` scripts instead of a build pipeline, it also works over `file://`.
 
 ## Deploy to GitHub Pages
