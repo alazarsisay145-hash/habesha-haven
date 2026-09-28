@@ -66,7 +66,7 @@
       if (!form.checkout.value || form.checkout.value <= form.checkin.value) {
         form.checkout.value = app.addDaysISO(form.checkin.value || today, 1);
       }
-      const nights = app.differenceInNights(form.checkin.value, form.checkout.value) || 1;
+      const dateSpan = app.differenceInNights(form.checkin.value, form.checkout.value) || 1;
       const guests = Number(form.guests.value || 1);
       const type = form.type.value || 'all';
       const filtered = app.ROOMS.filter((room) => room.maxGuests >= guests && (type === 'all' || room.id === type));
@@ -84,7 +84,7 @@
               <span class="price-pill">${app.formatCurrency(room.price)} ${app.t('rooms_price_suffix')}</span>
             </div>
             <ul class="feature-list">${room.features.map((feature) => `<li>${app.t(feature)}</li>`).join('')}<li>${app.t('rooms_for_guests', { count: room.maxGuests })}</li></ul>
-            <div class="summary-row"><span>${app.t('rooms_estimate')}</span><strong>${app.formatCurrency(room.price * guests)}</strong></div>
+            <div class="summary-row"><span>${app.t('rooms_estimate')}</span><strong>${app.formatCurrency(room.price * guests * dateSpan)}</strong></div>
             <div class="card-actions">
               <button class="secondary-button" type="button" data-view-room="${room.id}">${app.t('rooms_view')}</button>
               <a class="primary-button" href="booking.html?room=${encodeURIComponent(room.id)}&checkin=${encodeURIComponent(form.checkin.value)}&checkout=${encodeURIComponent(form.checkout.value)}&guests=${encodeURIComponent(String(guests))}">${app.t('rooms_book')}</a>
@@ -92,7 +92,7 @@
           </div>
         </article>`).join('');
       results.grid.querySelectorAll('[data-reveal]').forEach((card) => card.classList.add('is-visible'));
-      results.nights.textContent = app.t('rooms_nights', { count: nights });
+      results.nights.textContent = app.t('rooms_nights', { count: dateSpan });
       results.count.textContent = app.t('rooms_matches', { count: filtered.length });
       results.empty.hidden = filtered.length > 0;
     };
@@ -199,7 +199,7 @@
       const dateSpan = app.differenceInNights(fields.checkin.value, fields.checkout.value) || 1;
       const servings = Number(fields.guests.value || 0);
       const rate = room ? room.price : 0;
-      const subtotal = rate * servings;
+      const subtotal = rate * servings * dateSpan;
       const taxes = Math.round(subtotal * 0.15);
       const total = subtotal + taxes;
       summary.room.textContent = room ? app.t(room.nameKey) : app.t('placeholder_summary_room');
@@ -244,9 +244,9 @@
           dateSpan,
           servings: Number(fields.guests.value),
           rate: room.price,
-          subtotal: room.price * Number(fields.guests.value),
-          taxes: Math.round(room.price * Number(fields.guests.value) * 0.15),
-          total: room.price * Number(fields.guests.value) + Math.round(room.price * Number(fields.guests.value) * 0.15)
+          subtotal: room.price * Number(fields.guests.value) * dateSpan,
+          taxes: Math.round(room.price * Number(fields.guests.value) * dateSpan * 0.15),
+          total: room.price * Number(fields.guests.value) * dateSpan + Math.round(room.price * Number(fields.guests.value) * dateSpan * 0.15)
         }
       };
       const saved = await BookingService.submit(payload);
