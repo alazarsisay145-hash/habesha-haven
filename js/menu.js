@@ -3,28 +3,28 @@
   if (!app) return;
 
   const MENU_ITEMS = [
-    { id: 'coffee-ceremony', nameKey: 'menu_ceremony_name', descriptionKey: 'menu_ceremony_desc', categories: ['coffee'], price: 250, image: 'https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=900&q=80' },
-    { id: 'macchiato', nameKey: 'menu_macchiato_name', descriptionKey: 'menu_macchiato_desc', categories: ['coffee'], price: 180, image: 'https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&w=900&q=80' },
-    { id: 'chechebsa', nameKey: 'menu_chechebsa_name', descriptionKey: 'menu_chechebsa_desc', categories: ['breakfast'], price: 220, image: 'https://images.unsplash.com/photo-1514326640560-7d063ef2aed5?auto=format&fit=crop&w=900&q=80' },
-    { id: 'tibs', nameKey: 'menu_tibs_name', descriptionKey: 'menu_tibs_desc', categories: ['ethiopian', 'main_course'], price: 450, image: 'https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=900&q=80' },
-    { id: 'shiro', nameKey: 'menu_shiro_name', descriptionKey: 'menu_shiro_desc', categories: ['ethiopian'], price: 280, image: 'https://images.unsplash.com/photo-1515003197210-e0cd71810b5f?auto=format&fit=crop&w=900&q=80' },
-    { id: 'firfir', nameKey: 'menu_firfir_name', descriptionKey: 'menu_firfir_desc', categories: ['breakfast', 'ethiopian'], price: 250, image: 'https://images.unsplash.com/photo-1525755662778-989d0524087e?auto=format&fit=crop&w=900&q=80' },
-    { id: 'doro-wat', nameKey: 'menu_doro_name', descriptionKey: 'menu_doro_desc', categories: ['ethiopian', 'main_course'], price: 420, image: 'https://images.unsplash.com/photo-1512058564366-18510be2db19?auto=format&fit=crop&w=900&q=80' },
-    { id: 'beyaynetu', nameKey: 'menu_beyaynetu_name', descriptionKey: 'menu_beyaynetu_desc', categories: ['ethiopian'], price: 360, image: 'https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=900&q=80' },
-    { id: 'kitfo', nameKey: 'menu_kitfo_name', descriptionKey: 'menu_kitfo_desc', categories: ['ethiopian', 'main_course'], price: 520, image: 'https://images.unsplash.com/photo-1559847844-5315695dadae?auto=format&fit=crop&w=900&q=80' },
-    { id: 'ful', nameKey: 'menu_ful_name', descriptionKey: 'menu_ful_desc', categories: ['breakfast'], price: 200, image: 'https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=900&q=80' },
-    { id: 'enkulal-firfir', nameKey: 'menu_enkulal_name', descriptionKey: 'menu_enkulal_desc', categories: ['breakfast'], price: 240, image: 'https://images.unsplash.com/photo-1525351484163-7529414344d8?auto=format&fit=crop&w=900&q=80' },
-    { id: 'nile-perch', nameKey: 'menu_perch_name', descriptionKey: 'menu_perch_desc', categories: ['main_course'], price: 580, image: 'https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?auto=format&fit=crop&w=900&q=80' },
-    { id: 'club-sandwich', nameKey: 'menu_club_name', descriptionKey: 'menu_club_desc', categories: ['main_course'], price: 390, image: 'https://images.unsplash.com/photo-1528735602780-2552fd46c7af?auto=format&fit=crop&w=900&q=80' },
-    { id: 'pasta', nameKey: 'menu_pasta_name', descriptionKey: 'menu_pasta_desc', categories: ['main_course'], price: 340, image: 'https://images.unsplash.com/photo-1621996346565-e3dbc646d9a9?auto=format&fit=crop&w=900&q=80' },
-    { id: 'spris', nameKey: 'menu_spris_name', descriptionKey: 'menu_spris_desc', categories: ['drinks'], price: 190, image: 'https://images.unsplash.com/photo-1623065422902-30a2d299bbe4?auto=format&fit=crop&w=900&q=80' },
-    { id: 'mango-juice', nameKey: 'menu_mango_name', descriptionKey: 'menu_mango_desc', categories: ['drinks'], price: 170, image: 'https://images.unsplash.com/photo-1622597467836-f3285f2131b8?auto=format&fit=crop&w=900&q=80' },
-    { id: 'ambo-water', nameKey: 'menu_ambo_name', descriptionKey: 'menu_ambo_desc', categories: ['drinks'], price: 90, image: 'https://images.unsplash.com/photo-1564419436068-b9c0250f21e6?auto=format&fit=crop&w=900&q=80' },
-    { id: 'shai', nameKey: 'menu_shai_name', descriptionKey: 'menu_shai_desc', categories: ['drinks'], price: 110, image: 'https://images.unsplash.com/photo-1544787219-7f47ccb76574?auto=format&fit=crop&w=900&q=80' },
-    { id: 'cappuccino', nameKey: 'menu_cappuccino_name', descriptionKey: 'menu_cappuccino_desc', categories: ['coffee'], price: 210, image: 'https://images.unsplash.com/photo-1498804103079-a6351b050096?auto=format&fit=crop&w=900&q=80' },
-    { id: 'tiramisu', nameKey: 'menu_tiramisu_name', descriptionKey: 'menu_tiramisu_desc', categories: ['dessert'], price: 240, image: 'https://images.unsplash.com/photo-1571877227200-a0d98ea607e9?auto=format&fit=crop&w=900&q=80' },
-    { id: 'honey-cake', nameKey: 'menu_honey_cake_name', descriptionKey: 'menu_honey_cake_desc', categories: ['dessert'], price: 220, image: 'https://images.unsplash.com/photo-1464305795204-6f5bbfc7fb81?auto=format&fit=crop&w=900&q=80' },
-    { id: 'fruit-salad', nameKey: 'menu_fruit_name', descriptionKey: 'menu_fruit_desc', categories: ['dessert'], price: 180, image: 'https://images.unsplash.com/photo-1490474418585-ba9bad8fd0ea?auto=format&fit=crop&w=900&q=80' }
+    { id: 'hawassa-spris', nameKey: 'menu_ceremony_name', descriptionKey: 'menu_ceremony_desc', categories: ['ethiopian', 'coffee'], price: 120, image: 'https://images.unsplash.com/photo-1623065422902-30a2d299bbe4?auto=format&fit=crop&w=900&q=80' },
+    { id: 'avocado-juice', nameKey: 'menu_macchiato_name', descriptionKey: 'menu_macchiato_desc', categories: ['coffee', 'drinks'], price: 140, image: 'https://images.unsplash.com/photo-1542444459-db63c0d6fd98?auto=format&fit=crop&w=900&q=80' },
+    { id: 'fruit-salad-cup', nameKey: 'menu_chechebsa_name', descriptionKey: 'menu_chechebsa_desc', categories: ['breakfast', 'dessert'], price: 150, image: 'https://images.unsplash.com/photo-1490474418585-ba9bad8fd0ea?auto=format&fit=crop&w=900&q=80' },
+    { id: 'burger-combo', nameKey: 'menu_tibs_name', descriptionKey: 'menu_tibs_desc', categories: ['main_course'], price: 260, image: 'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=900&q=80' },
+    { id: 'papaya-juice', nameKey: 'menu_shiro_name', descriptionKey: 'menu_shiro_desc', categories: ['coffee', 'drinks'], price: 130, image: 'https://images.unsplash.com/photo-1553531889-56cc480ac5cb?auto=format&fit=crop&w=900&q=80' },
+    { id: 'mango-juice', nameKey: 'menu_firfir_name', descriptionKey: 'menu_firfir_desc', categories: ['coffee', 'drinks'], price: 140, image: 'https://images.unsplash.com/photo-1622597467836-f3285f2131b8?auto=format&fit=crop&w=900&q=80' },
+    { id: 'pizza-combo', nameKey: 'menu_doro_name', descriptionKey: 'menu_doro_desc', categories: ['main_course'], price: 280, image: 'https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=900&q=80' },
+    { id: 'family-fruit-bowl', nameKey: 'menu_beyaynetu_name', descriptionKey: 'menu_beyaynetu_desc', categories: ['breakfast', 'dessert'], price: 320, image: 'https://images.unsplash.com/photo-1502741338009-cac2772e18bc?auto=format&fit=crop&w=900&q=80' },
+    { id: 'avocado-mango-spris', nameKey: 'menu_kitfo_name', descriptionKey: 'menu_kitfo_desc', categories: ['ethiopian', 'coffee'], price: 160, image: 'https://images.unsplash.com/photo-1497534446932-c925b458314e?auto=format&fit=crop&w=900&q=80' },
+    { id: 'banana-juice', nameKey: 'menu_ful_name', descriptionKey: 'menu_ful_desc', categories: ['coffee', 'drinks'], price: 130, image: 'https://images.unsplash.com/photo-1577805947697-89e18249d767?auto=format&fit=crop&w=900&q=80' },
+    { id: 'watermelon-juice', nameKey: 'menu_enkulal_name', descriptionKey: 'menu_enkulal_desc', categories: ['drinks'], price: 120, image: 'https://images.unsplash.com/photo-1622483767028-3f66f32aef97?auto=format&fit=crop&w=900&q=80' },
+    { id: 'special-spris-bowl', nameKey: 'menu_perch_name', descriptionKey: 'menu_perch_desc', categories: ['ethiopian', 'dessert'], price: 190, image: 'https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=900&q=80' },
+    { id: 'chicken-burger', nameKey: 'menu_club_name', descriptionKey: 'menu_club_desc', categories: ['main_course'], price: 240, image: 'https://images.unsplash.com/photo-1520072959219-c595dc870360?auto=format&fit=crop&w=900&q=80' },
+    { id: 'veggie-pizza', nameKey: 'menu_pasta_name', descriptionKey: 'menu_pasta_desc', categories: ['main_course'], price: 250, image: 'https://images.unsplash.com/photo-1511689660979-10d2b1aada49?auto=format&fit=crop&w=900&q=80' },
+    { id: 'layered-spris', nameKey: 'menu_spris_name', descriptionKey: 'menu_spris_desc', categories: ['ethiopian', 'coffee'], price: 170, image: 'https://images.unsplash.com/photo-1623065422902-30a2d299bbe4?auto=format&fit=crop&w=900&q=80' },
+    { id: 'fresh-mango', nameKey: 'menu_mango_name', descriptionKey: 'menu_mango_desc', categories: ['coffee', 'drinks'], price: 140, image: 'https://images.unsplash.com/photo-1622597467836-f3285f2131b8?auto=format&fit=crop&w=900&q=80' },
+    { id: 'water', nameKey: 'menu_ambo_name', descriptionKey: 'menu_ambo_desc', categories: ['drinks'], price: 40, image: 'https://images.unsplash.com/photo-1564419436068-b9c0250f21e6?auto=format&fit=crop&w=900&q=80' },
+    { id: 'lemon-mint', nameKey: 'menu_shai_name', descriptionKey: 'menu_shai_desc', categories: ['drinks'], price: 90, image: 'https://images.unsplash.com/photo-1499636136210-6f4ee915583e?auto=format&fit=crop&w=900&q=80' },
+    { id: 'avocado-banana', nameKey: 'menu_cappuccino_name', descriptionKey: 'menu_cappuccino_desc', categories: ['coffee', 'drinks'], price: 150, image: 'https://images.unsplash.com/photo-1556881286-fc6915169721?auto=format&fit=crop&w=900&q=80' },
+    { id: 'yogurt-fruit-cup', nameKey: 'menu_tiramisu_name', descriptionKey: 'menu_tiramisu_desc', categories: ['dessert'], price: 130, image: 'https://images.unsplash.com/photo-1488477181946-6428a0291777?auto=format&fit=crop&w=900&q=80' },
+    { id: 'honey-fruit-bowl', nameKey: 'menu_honey_cake_name', descriptionKey: 'menu_honey_cake_desc', categories: ['dessert', 'breakfast'], price: 170, image: 'https://images.unsplash.com/photo-1498837167922-ddd27525d352?auto=format&fit=crop&w=900&q=80' },
+    { id: 'bereket-fruit-salad', nameKey: 'menu_fruit_name', descriptionKey: 'menu_fruit_desc', categories: ['breakfast', 'dessert'], price: 180, image: 'https://images.unsplash.com/photo-1490474418585-ba9bad8fd0ea?auto=format&fit=crop&w=900&q=80' }
   ];
 
   const page = document.querySelector('[data-menu-page]');
@@ -195,7 +195,7 @@
 
   function openOrderModal() {
     const lines = cartLineItems();
-    const reference = `HH-${Math.floor(Date.now() / 1000).toString(36).toUpperCase()}`;
+    const reference = `BJ-${Math.floor(Date.now() / 1000).toString(36).toUpperCase()}`;
     const summary = document.createElement('div');
     summary.className = 'order-summary';
     lines.forEach((item) => {

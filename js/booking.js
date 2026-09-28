@@ -84,7 +84,7 @@
               <span class="price-pill">${app.formatCurrency(room.price)} ${app.t('rooms_price_suffix')}</span>
             </div>
             <ul class="feature-list">${room.features.map((feature) => `<li>${app.t(feature)}</li>`).join('')}<li>${app.t('rooms_for_guests', { count: room.maxGuests })}</li></ul>
-            <div class="summary-row"><span>${app.t('rooms_estimate')}</span><strong>${app.formatCurrency(room.price * nights)}</strong></div>
+            <div class="summary-row"><span>${app.t('rooms_estimate')}</span><strong>${app.formatCurrency(room.price * guests)}</strong></div>
             <div class="card-actions">
               <button class="secondary-button" type="button" data-view-room="${room.id}">${app.t('rooms_view')}</button>
               <a class="primary-button" href="booking.html?room=${encodeURIComponent(room.id)}&checkin=${encodeURIComponent(form.checkin.value)}&checkout=${encodeURIComponent(form.checkout.value)}&guests=${encodeURIComponent(String(guests))}">${app.t('rooms_book')}</a>
@@ -196,13 +196,14 @@
         fields.checkout.value = app.addDaysISO(fields.checkin.value || today, 1);
       }
       const room = selectedRoom();
-      const nights = app.differenceInNights(fields.checkin.value, fields.checkout.value) || 1;
+      const leadTime = app.differenceInNights(fields.checkin.value, fields.checkout.value) || 1;
+      const servings = Number(fields.guests.value || 0);
       const rate = room ? room.price : 0;
-      const subtotal = rate * nights;
+      const subtotal = rate * servings;
       const taxes = Math.round(subtotal * 0.15);
       const total = subtotal + taxes;
       summary.room.textContent = room ? app.t(room.nameKey) : app.t('placeholder_summary_room');
-      summary.nights.textContent = String(nights);
+      summary.nights.textContent = servings ? String(servings) : '—';
       summary.rate.textContent = rate ? app.formatCurrency(rate) : '—';
       summary.subtotal.textContent = subtotal ? app.formatCurrency(subtotal) : '—';
       summary.taxes.textContent = taxes ? app.formatCurrency(taxes) : '—';
@@ -229,7 +230,7 @@
       event.preventDefault();
       if (!validate()) return;
       const room = selectedRoom();
-      const nights = app.differenceInNights(fields.checkin.value, fields.checkout.value);
+      const leadTime = app.differenceInNights(fields.checkin.value, fields.checkout.value);
       const payload = {
         fullName: fields.name.value.trim(),
         email: fields.email.value.trim(),
@@ -240,15 +241,16 @@
         roomType: fields.room.value,
         specialRequests: fields.requests.value.trim(),
         estimate: {
-          nights,
+          leadTime,
+          servings: Number(fields.guests.value),
           rate: room.price,
-          subtotal: room.price * nights,
-          taxes: Math.round(room.price * nights * 0.15),
-          total: room.price * nights + Math.round(room.price * nights * 0.15)
+          subtotal: room.price * Number(fields.guests.value),
+          taxes: Math.round(room.price * Number(fields.guests.value) * 0.15),
+          total: room.price * Number(fields.guests.value) + Math.round(room.price * Number(fields.guests.value) * 0.15)
         }
       };
       const saved = await BookingService.submit(payload);
-      lastConfirmation = { saved, room, payload, nights };
+      lastConfirmation = { saved, room, payload };
       form.hidden = true;
       confirmation.hidden = false;
       renderConfirmation(lastConfirmation);
@@ -257,7 +259,7 @@
 
     function renderConfirmation(data) {
       if (!data) return;
-      const { saved, room, payload, nights } = data;
+      const { saved, room, payload } = data;
       confirmation.querySelector('[data-booking-confirmation-title]').textContent = app.t('booking_request_saved_title');
       confirmation.querySelector('[data-booking-confirmation-text]').textContent = app.t('booking_request_saved_text');
       confirmation.querySelector('[data-booking-reference]').textContent = saved.id.toUpperCase();
@@ -266,7 +268,7 @@
       summaryBlock.className = 'order-summary';
       [
         [app.t('booking_summary_room'), app.t(room.nameKey), 'span'],
-        [app.t('booking_summary_nights'), String(nights), 'span'],
+        [app.t('booking_summary_nights'), String(payload.estimate.servings), 'span'],
         [app.t('booking_summary_total'), app.formatCurrency(payload.estimate.total), 'strong']
       ].forEach(([label, value, valueTag]) => {
         const row = document.createElement('div');
