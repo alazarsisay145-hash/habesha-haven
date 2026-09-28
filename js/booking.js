@@ -91,6 +91,7 @@
             </div>
           </div>
         </article>`).join('');
+      results.grid.querySelectorAll('[data-reveal]').forEach((card) => card.classList.add('is-visible'));
       results.nights.textContent = app.t('rooms_nights', { count: nights });
       results.count.textContent = app.t('rooms_matches', { count: filtered.length });
       results.empty.hidden = filtered.length > 0;

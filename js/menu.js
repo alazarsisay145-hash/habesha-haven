@@ -97,8 +97,9 @@
           <div class="menu-actions"><button class="primary-button" type="button" data-add-order="${item.id}">${app.t('menu_add')}</button></div>
         </div>
       </article>`).join('');
-    els.results.textContent = app.t('menu_results', { count: items.length });
-    els.empty.hidden = items.length > 0;
+      els.grid.querySelectorAll('[data-reveal]').forEach((card) => card.classList.add('is-visible'));
+      els.results.textContent = app.t('menu_results', { count: items.length });
+      els.empty.hidden = items.length > 0;
   }
 
   function updateChipStates() {

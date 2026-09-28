@@ -324,9 +324,9 @@
     safeStorageSet('hh_lang', state.lang);
     updateLanguageButtons();
     applyBrand();
-    document.dispatchEvent(new CustomEvent('languagechange', { detail: { lang: state.lang } }));
     translatePage();
     renderHomeRoomsPreview();
+    document.dispatchEvent(new CustomEvent('languagechange', { detail: { lang: state.lang } }));
     if (announce) showToast(t('toast_language'));
   }
 
