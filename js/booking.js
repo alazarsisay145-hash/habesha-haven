@@ -16,7 +16,7 @@
         })();
         const payload = { id: `booking-${Date.now()}`, timestamp: new Date().toISOString(), data };
         existing.push(payload);
-        localStorage.setItem('hh_bookings', JSON.stringify(existing));
+        app.safeStorageSet('hh_bookings', JSON.stringify(existing));
         resolve(payload);
       });
     }
@@ -250,7 +250,24 @@
       confirmation.querySelector('[data-booking-confirmation-title]').textContent = app.t('booking_request_saved_title');
       confirmation.querySelector('[data-booking-confirmation-text]').textContent = app.t('booking_request_saved_text');
       confirmation.querySelector('[data-booking-reference]').textContent = saved.id.toUpperCase();
-      confirmation.querySelector('[data-booking-summary]').innerHTML = `<div class="order-summary"><div class="summary-row"><span>${app.t('booking_summary_room')}</span><span>${app.t(room.nameKey)}</span></div><div class="summary-row"><span>${app.t('booking_summary_nights')}</span><span>${nights}</span></div><div class="summary-row"><span>${app.t('booking_summary_total')}</span><strong>${app.formatCurrency(payload.estimate.total)}</strong></div></div>`;
+      const summaryRoot = confirmation.querySelector('[data-booking-summary]');
+      const summary = document.createElement('div');
+      summary.className = 'order-summary';
+      [
+        [app.t('booking_summary_room'), app.t(room.nameKey), 'span'],
+        [app.t('booking_summary_nights'), String(nights), 'span'],
+        [app.t('booking_summary_total'), app.formatCurrency(payload.estimate.total), 'strong']
+      ].forEach(([label, value, valueTag]) => {
+        const row = document.createElement('div');
+        row.className = 'summary-row';
+        const labelNode = document.createElement('span');
+        labelNode.textContent = label;
+        const valueNode = document.createElement(valueTag);
+        valueNode.textContent = value;
+        row.append(labelNode, valueNode);
+        summary.appendChild(row);
+      });
+      summaryRoot.replaceChildren(summary);
       app.showToast(app.t('toast_booking_saved'));
     }
 

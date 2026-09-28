@@ -193,8 +193,21 @@
   function openOrderModal() {
     const lines = cartLineItems();
     const reference = `HH-${Math.floor(Date.now() / 1000).toString(36).toUpperCase()}`;
-    els.orderSummary.innerHTML = `<div class="order-summary">${lines.map((item) => `<div class="summary-row"><span>${item.quantity} × ${app.t(item.nameKey)}</span><span>${app.formatCurrency(item.lineTotal)}</span></div>`).join('')}</div>`;
+    const summary = document.createElement('div');
+    summary.className = 'order-summary';
+    lines.forEach((item) => {
+      const row = document.createElement('div');
+      row.className = 'summary-row';
+      const name = document.createElement('span');
+      name.textContent = `${item.quantity} × ${app.t(item.nameKey)}`;
+      const total = document.createElement('span');
+      total.textContent = app.formatCurrency(item.lineTotal);
+      row.append(name, total);
+      summary.appendChild(row);
+    });
+    els.orderSummary.replaceChildren(summary);
     els.orderReference.textContent = reference;
+    closeCart();
     els.orderModal.classList.add('is-open');
     document.body.classList.add('modal-open');
     state.releaseOrderTrap = app.trapFocus(els.orderModal.querySelector('.modal-dialog'));
@@ -203,7 +216,6 @@
     state.cart = [];
     persistCart();
     renderCart();
-    closeCart();
   }
 
   function closeOrderModal() {

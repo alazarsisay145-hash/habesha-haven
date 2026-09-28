@@ -208,15 +208,21 @@
     return `ETB ${Number(amount || 0).toLocaleString('en-US')}`;
   }
 
+  function formatLocalDate(date) {
+    const year = date.getFullYear();
+    const month = `${date.getMonth() + 1}`.padStart(2, '0');
+    const day = `${date.getDate()}`.padStart(2, '0');
+    return `${year}-${month}-${day}`;
+  }
+
   function todayISO() {
-    const now = new Date();
-    return now.toISOString().slice(0, 10);
+    return formatLocalDate(new Date());
   }
 
   function addDaysISO(isoDate, days) {
     const date = new Date(`${isoDate}T00:00:00`);
     date.setDate(date.getDate() + days);
-    return date.toISOString().slice(0, 10);
+    return formatLocalDate(date);
   }
 
   function differenceInNights(checkIn, checkOut) {
@@ -510,6 +516,8 @@
     differenceInNights,
     getLanguage: () => state.lang,
     setLanguage,
+    safeStorageGet,
+    safeStorageSet,
     showToast,
     trapFocus,
     placeholderSvg,
