@@ -8,7 +8,7 @@
       return new Promise((resolve) => {
         const existing = (() => {
           try {
-            const parsed = JSON.parse(localStorage.getItem('hh_bookings') || '[]');
+            const parsed = JSON.parse(localStorage.getItem('bj_bookings') || '[]');
             return Array.isArray(parsed) ? parsed : [];
           } catch (error) {
             return [];
@@ -16,7 +16,7 @@
         })();
         const payload = { id: `booking-${Date.now()}`, timestamp: new Date().toISOString(), data };
         existing.push(payload);
-        app.safeStorageSet('hh_bookings', JSON.stringify(existing));
+        app.safeStorageSet('bj_bookings', JSON.stringify(existing));
         resolve(payload);
       });
     }
@@ -196,14 +196,14 @@
         fields.checkout.value = app.addDaysISO(fields.checkin.value || today, 1);
       }
       const room = selectedRoom();
-      const leadTime = app.differenceInNights(fields.checkin.value, fields.checkout.value) || 1;
+      const dateSpan = app.differenceInNights(fields.checkin.value, fields.checkout.value) || 1;
       const servings = Number(fields.guests.value || 0);
       const rate = room ? room.price : 0;
       const subtotal = rate * servings;
       const taxes = Math.round(subtotal * 0.15);
       const total = subtotal + taxes;
       summary.room.textContent = room ? app.t(room.nameKey) : app.t('placeholder_summary_room');
-      summary.nights.textContent = servings ? app.t('booking_summary_servings_lead', { servings, days: leadTime }) : '—';
+      summary.nights.textContent = servings ? app.t('booking_summary_servings_lead', { servings, days: dateSpan }) : '—';
       summary.rate.textContent = rate ? app.formatCurrency(rate) : '—';
       summary.subtotal.textContent = subtotal ? app.formatCurrency(subtotal) : '—';
       summary.taxes.textContent = taxes ? app.formatCurrency(taxes) : '—';
@@ -230,7 +230,7 @@
       event.preventDefault();
       if (!validate()) return;
       const room = selectedRoom();
-      const leadTime = app.differenceInNights(fields.checkin.value, fields.checkout.value);
+      const dateSpan = app.differenceInNights(fields.checkin.value, fields.checkout.value);
       const payload = {
         fullName: fields.name.value.trim(),
         email: fields.email.value.trim(),
@@ -241,7 +241,7 @@
         roomType: fields.room.value,
         specialRequests: fields.requests.value.trim(),
         estimate: {
-          leadTime,
+          dateSpan,
           servings: Number(fields.guests.value),
           rate: room.price,
           subtotal: room.price * Number(fields.guests.value),
@@ -268,7 +268,7 @@
       summaryBlock.className = 'order-summary';
       [
         [app.t('booking_summary_room'), app.t(room.nameKey), 'span'],
-        [app.t('booking_summary_nights'), app.t('booking_summary_servings_lead', { servings: payload.estimate.servings, days: payload.estimate.leadTime }), 'span'],
+        [app.t('booking_summary_nights'), app.t('booking_summary_servings_lead', { servings: payload.estimate.servings, days: payload.estimate.dateSpan }), 'span'],
         [app.t('booking_summary_total'), app.formatCurrency(payload.estimate.total), 'strong']
       ].forEach(([label, value, valueTag]) => {
         const row = document.createElement('div');

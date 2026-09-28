@@ -56,7 +56,7 @@
 
   function loadCart() {
     try {
-      const parsed = JSON.parse(localStorage.getItem('hh_cart') || '[]');
+      const parsed = JSON.parse(localStorage.getItem('bj_cart') || '[]');
       return Array.isArray(parsed) ? parsed.filter((item) => MENU_ITEMS.some((menuItem) => menuItem.id === item.id)) : [];
     } catch (error) {
       return [];
@@ -64,7 +64,7 @@
   }
 
   function persistCart() {
-    try { localStorage.setItem('hh_cart', JSON.stringify(state.cart)); } catch (error) { /* ignore */ }
+    try { localStorage.setItem('bj_cart', JSON.stringify(state.cart)); } catch (error) { /* ignore */ }
   }
 
   function getFilteredItems() {

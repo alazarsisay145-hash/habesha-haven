@@ -62,8 +62,8 @@ This repository includes `.github/workflows/deploy.yml`, which deploys the stati
 2. Go to **Settings → Pages**.
 3. Set **Source** to **GitHub Actions**.
 4. Wait for the **Deploy static content to Pages** workflow to complete after a push to `main`.
-5. Visit the published site at:
-   - **https://alazarsisay145-hash.github.io/habesha-haven/**
+5. Visit the published site at the standard Pages URL pattern `https://<owner>.github.io/<repo>/`.
+   - For this repository, the expected URL is **https://alazarsisay145-hash.github.io/habesha-haven/**
 
 ## Rebranding notes
 

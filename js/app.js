@@ -69,16 +69,16 @@
       testimonial_2_quote: 'The fruit salad is generous, colorful, and perfect with the avocado juice.', testimonial_2_name: 'Henok T.', testimonial_2_meta: 'Afternoon visitor',
       testimonial_3_quote: 'Great stop in Hawassa for quick burgers, pizza, and cold fresh juice.', testimonial_3_name: 'Rahel K.', testimonial_3_meta: 'Family order',
       cta_title: 'Plan your next juice stop with Bereket Juice', cta_text: 'Browse our specials, build an order, or send a pre-order request for pickup in Hawassa.', cta_button: 'Start your order request',
-      rooms_page_title: 'Signature specials for cups, bowls, and sharing trays', rooms_page_text: 'Filter by serving size, compare specials, and preview pricing before sending your order request.',
+      rooms_page_title: 'Signature specials for cups, bowls, and sharing trays', rooms_page_text: 'Use the dates to plan pickup and serving timing, then compare per-person pricing for the right special.',
       rooms_search_title: 'Find the right special', rooms_search_button: 'Show Specials', rooms_checkin: 'Pickup date', rooms_checkout: 'Serve by', rooms_guests: 'People to serve', rooms_type: 'Special type', room_type_all: 'All specials',
-      rooms_nights: 'Lead time: {count} day(s)', rooms_matches: '{count} specials', rooms_none: 'No specials match that serving size right now. Try fewer people or another special.',
-      rooms_estimate: 'Estimated total', rooms_modal_guests: 'Best for up to {count} people', modal_close: 'Close',
+      rooms_nights: 'Service window: {count} day(s)', rooms_matches: '{count} specials', rooms_none: 'No specials match that serving size right now. Try fewer people or another special.',
+      rooms_estimate: 'Estimated total by serving size', rooms_modal_guests: 'Best for up to {count} people', modal_close: 'Close',
       menu_page_title: 'Fresh juices, fruit salads & quick bites', menu_page_text: 'Filter the menu, search favorites, and build an order request for Bereket Juice.',
       menu_search_label: 'Search menu', menu_search_placeholder: 'Search spris, mango, burger…', menu_results: '{count} menu items', menu_empty: 'No menu items match your current filters.',
       menu_category_all: 'All', menu_category_breakfast: 'Fruit Salad', menu_category_ethiopian: 'Signature Mixes', menu_category_main_course: 'Fast Bites', menu_category_coffee: 'Fresh Juices', menu_category_drinks: 'Chilled Drinks', menu_category_dessert: 'Sweet Extras',
       menu_add: 'Add to Order', cart_title: 'Your order request', cart_empty: 'Your cart is empty. Add a few Bereket favorites to get started.', cart_subtotal: 'Subtotal', cart_service: 'Service charge (10%)', cart_total: 'Total', cart_place: 'Place Order', cart_remove: 'Remove', cart_qty_minus: 'Decrease quantity', cart_qty_plus: 'Increase quantity', cart_open: 'Open order cart', cart_count: '{count} items', cart_confirm_title: 'Order request noted', cart_confirm_text: 'Your order request has been noted — this is a demo, so please confirm it directly by phone or on TikTok with Bereket Juice.', cart_reference: 'Reference', cart_close: 'Continue browsing',
       booking_page_title: 'Send a Bereket Juice pre-order request', booking_page_text: 'Share your pickup window, serving size, and selected special and we will follow up to confirm your order.',
-      booking_form_title: 'Pre-order request', booking_submit: 'Send Order Request', booking_summary_title: 'Order estimate', booking_summary_room: 'Special', booking_summary_nights: 'Serving size & lead time', booking_summary_servings_lead: '{servings} people · {days} day lead time', booking_summary_rate: 'Price per person', booking_summary_subtotal: 'Subtotal', booking_summary_taxes: 'Service fee (15%)', booking_summary_total: 'Estimated total', booking_summary_note: 'This estimate is for guidance only. Final pickup details and totals will be confirmed directly by Bereket Juice.', booking_requests_label: 'Order notes', booking_room_type: 'Special', booking_name: 'Full Name', booking_email: 'Email', booking_phone: 'Phone', booking_guest_count: 'People to serve',
+      booking_form_title: 'Pre-order request', booking_submit: 'Send Order Request', booking_summary_title: 'Order estimate', booking_summary_room: 'Special', booking_summary_nights: 'Serving size & lead time', booking_summary_servings_lead: '{servings} people · {days} day service window', booking_summary_rate: 'Price per person', booking_summary_subtotal: 'Subtotal', booking_summary_taxes: 'Service fee (15%)', booking_summary_total: 'Estimated total', booking_summary_note: 'This estimate is for guidance only. Final pickup details and totals will be confirmed directly by Bereket Juice.', booking_requests_label: 'Order notes', booking_room_type: 'Special', booking_name: 'Full Name', booking_email: 'Email', booking_phone: 'Phone', booking_guest_count: 'People to serve',
       booking_request_saved_title: 'Pre-order request received', booking_request_saved_text: 'Thank you. This is a pre-order request only — Bereket Juice will contact you to confirm the final order.', booking_reference: 'Reference number', booking_back_to_rooms: 'Browse specials again',
       contact_page_title: 'Contact Bereket Juice & Fruit Salad', contact_page_text: 'Reach out for pickup orders, fruit salad trays, layered spris juices, and Hawassa location details.',
       contact_phone_title: 'Phone', contact_email_title: 'TikTok', contact_location_title: 'Location', contact_hours_title: 'Opening Hours', contact_form_title: 'Send us a message', contact_message: 'Message', contact_submit: 'Send Message', contact_success_title: 'Message saved', contact_success_text: 'Thanks for reaching out. This demo stores your message locally and can later connect to Bereket Juice directly.', contact_map_title: 'Find Bereket Juice in Hawassa', contact_map_text: 'Near the heart of Hawassa, ready with fresh juices, fruit salads, burgers, and pizza for pickup.', contact_map_link: 'Open the Hawassa map',
@@ -186,7 +186,7 @@
     cta_text: 'ልዩ ኦርደሮችን ይመልከቱ፣ ትዕዛዝ ያዘጋጁ ወይም ለመውሰጃ ቅድሚያ ጥያቄ ይላኩ።',
     cta_button: 'የትዕዛዝ ጥያቄዎን ይጀምሩ',
     rooms_page_title: 'ለኩባያ፣ ሳህን እና መካፈል የሚሆኑ ልዩ ኦርደሮች',
-    rooms_page_text: 'በሚያገለግሉት ብዛት ይጣሩ፣ ዋጋዎችን ያወዳድሩ እና ትዕዛዝዎን ከመላክዎ በፊት ግምቱን ይመልከቱ።',
+    rooms_page_text: 'ቀኖቹን ለመውሰጃ እና ለማቅረብ ጊዜ ያቅዱ፣ ከዚያም በሰው ዋጋ የሚስማማውን ይወዳድሩ።',
     rooms_search_title: 'ትክክለኛውን ይፈልጉ',
     rooms_search_button: 'ልዩ ኦርደሮችን አሳይ',
     rooms_checkin: 'የመውሰጃ ቀን',
@@ -194,10 +194,10 @@
     rooms_guests: 'የሚያገለግሉት ሰዎች',
     rooms_type: 'የልዩ ኦርደር አይነት',
     room_type_all: 'ሁሉም ልዩ ኦርደሮች',
-    rooms_nights: 'የቅድሚያ ጊዜ: {count} ቀን',
+    rooms_nights: 'የአገልግሎት ጊዜ: {count} ቀን',
     rooms_matches: '{count} ልዩ ኦርደሮች',
     rooms_none: 'ለዚህ ብዛት የሚስማማ ኦርደር አልተገኘም። ያነሱ ወይም ሌላ ይምረጡ።',
-    rooms_estimate: 'የጠቅላላ ግምት',
+    rooms_estimate: 'በሚያገለግሉት ብዛት የሚለዋወጥ ግምት',
     rooms_modal_guests: 'እስከ {count} ሰዎች ድረስ ተስማሚ',
     modal_close: 'ዝጋ',
     menu_page_title: 'ትኩስ ጁሶች፣ ፍራፍሬ ሳላዶች እና ፈጣን ምግቦች',
@@ -236,7 +236,7 @@
     booking_summary_title: 'የትዕዛዝ ግምት',
     booking_summary_room: 'ልዩ ኦርደር',
     booking_summary_nights: 'የሚያገለግሉት ብዛት እና ቅድሚያ',
-    booking_summary_servings_lead: '{servings} ሰዎች · {days} ቀን ቅድሚያ',
+    booking_summary_servings_lead: '{servings} ሰዎች · {days} ቀን የአገልግሎት ጊዜ',
     booking_summary_rate: 'የአንድ ሰው ዋጋ',
     booking_summary_subtotal: 'ንዑስ ጠቅላላ',
     booking_summary_taxes: 'የአገልግሎት ክፍያ (15%)',
@@ -357,10 +357,10 @@
   };
   translations.am = { ...translations.en, ...AM_TRANSLATION_OVERRIDES };
 
-  const state = { lang: safeStorageGet('hh_lang') || 'en' };
+  const state = { lang: safeStorageGet('bj_lang') || 'en' };
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const toastRegionId = 'toast-region';
-  const languageEventName = 'hh:languagechange';
+  const languageEventName = 'bj:languagechange';
 
   function safeStorageGet(key) {
     try { return localStorage.getItem(key); } catch (error) { return null; }
@@ -497,7 +497,7 @@
   function setLanguage(lang, announce = true) {
     state.lang = lang === 'am' ? 'am' : 'en';
     document.documentElement.lang = state.lang;
-    safeStorageSet('hh_lang', state.lang);
+    safeStorageSet('bj_lang', state.lang);
     updateLanguageButtons();
     applyBrand();
     translatePage();
@@ -652,14 +652,14 @@
       };
       const existing = (() => {
         try {
-          const data = JSON.parse(localStorage.getItem('hh_messages') || '[]');
+          const data = JSON.parse(localStorage.getItem('bj_messages') || '[]');
           return Array.isArray(data) ? data : [];
         } catch (error) {
           return [];
         }
       })();
       existing.push(payload);
-      safeStorageSet('hh_messages', JSON.stringify(existing));
+      safeStorageSet('bj_messages', JSON.stringify(existing));
       form.reset();
       if (success) {
         success.hidden = false;
